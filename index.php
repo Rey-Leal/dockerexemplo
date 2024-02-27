@@ -5,7 +5,7 @@
     <h4>PHP & Docker</h4>
 
     <?php
-    //phpinfo();
+    // Referenciando conexao
     echo ("Container PHP + Apache executado com sucesso!<br>");
     echo ("Conectando ao mySQL...<br>");
     $conexao = mysqli_connect('db', 'root', 'root', 'testes') or die($erro = mysqli_connect_error());
@@ -13,6 +13,7 @@
 
     echo ("<br>");
 
+    // Criando banco de dados e tabelas
     $sql = "DROP TABLE cliente";
     mysqli_query($conexao, $sql);
 
@@ -31,7 +32,8 @@
             VALUES 
             (1, 'Rey Leal', 1), 
             (2, 'Ana Clara', 1), 
-            (3, 'Joseph Climmber', 0);";
+            (3, 'Joseph Climmber', 0), 
+            (4, 'Mario Silva', 1);";
     if (mysqli_query($conexao, $sql)) {
         $registros = mysqli_affected_rows($conexao);
         echo ("Linhas executadas: " . $registros . "<br>");
@@ -41,6 +43,7 @@
 
     echo ("<br>");
 
+    // Acessando dados
     $sql = "SELECT * FROM cliente;";
     $resultado = $conexao->query($sql);
     if ($resultado->num_rows > 0) {
