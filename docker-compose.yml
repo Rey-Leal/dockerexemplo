@@ -1,0 +1,23 @@
+services:
+  php:
+    image: php:7.4.30-apache
+    container_name: server_php_apache
+    ports:
+      - "8080:80"
+      - "443:443"
+    volumes:
+      - E:\Docker\Testes:/var/www/html
+    links:
+      - db
+
+  db:
+    image: mysql:latest
+    container_name: server_mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - /var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testes
+      
